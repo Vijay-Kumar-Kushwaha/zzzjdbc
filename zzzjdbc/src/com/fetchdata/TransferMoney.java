@@ -5,8 +5,17 @@
  * accno String
  * name String
  * bal String
+ * 
+ * 
+ * verify(scan, con); method of the Authenticate class...
+ * is related to this TransferMoney. (it is use to establish the ACID properties)
+ * a --> Atomicity
+ * c --> consistency
+ * i --> isolation
+ * d --> durability
  * */
 package com.fetchdata;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -79,16 +88,11 @@ public class TransferMoney {
 			else
 				System.out.println("Success");
 			
-		}
+ 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		try {
-			con.commit();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+		Authenticate.verify(scan, con);
 		disp();
 		
 	}
